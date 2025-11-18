@@ -6,7 +6,8 @@ import { ApiError } from "../utils/errors";
 
 export class ElevenLabsClientWrapper {
   private client: SDKClient;
-  private defaultModelId = "eleven_multilingual_v2";
+  // private defaultModelId = "eleven_multilingual_v2";
+  private defaultModelId = "eleven_v3";
   private defaultOutputFormat = "mp3_44100_128";
 
   constructor(apiKey?: string) {

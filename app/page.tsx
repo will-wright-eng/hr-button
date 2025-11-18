@@ -66,9 +66,10 @@ export default function Home() {
 
     try {
       // Use prompt builder for structured prompts (or use raw string)
-      const prompt = new PromptBuilder("GREETING")
-        .setVariable("topic", "AI")
-        .build();
+      // const prompt = new PromptBuilder("GREETING")
+      //   .setVariable("topic", "AI")
+      //   .build();
+      const prompt = new PromptBuilder("HR_ADVICE").build();
 
       const request: CombinedRequest = {
         prompt,
@@ -152,10 +153,9 @@ export default function Home() {
     <div
       style={{ padding: "2rem", fontFamily: "system-ui", maxWidth: "800px" }}
     >
-      <h1>Gemini API Tester</h1>
+      <h1>HR Assistant</h1>
       <p style={{ marginBottom: "1rem", color: "#666" }}>
-        Test the Gemini API text completion endpoint with optional
-        text-to-speech
+        HR Assistant is here to help you with your HR questions and concerns.
       </p>
 
       <div style={{ marginBottom: "1rem" }}>
@@ -193,7 +193,7 @@ export default function Home() {
           ? audioLoading
             ? "Generating audio..."
             : "Generating text..."
-          : "Call API"}
+          : "Call HR!"}
       </button>
 
       {error && (

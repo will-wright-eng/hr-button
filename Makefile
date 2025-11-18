@@ -6,10 +6,6 @@ help: ## list make commands
 	@echo ${MAKEFILE_LIST}
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-#* ============================================================================
-#* Quick Commands
-#* ============================================================================
-
 dev: ## start development server
 	npm run dev
 
@@ -22,9 +18,10 @@ lint: ## run linter
 type-check: ## check TypeScript types
 	npx tsc --noEmit
 
-#* ============================================================================
-#* API Key Tests
-#* ============================================================================
+check-env-vars: ## check environment variables
+	echo "Checking environment variables..."
+	echo "GEMINI_API_KEY: ${GEMINI_API_KEY}"
+	echo "ELEVENLABS_API_KEY: ${ELEVENLABS_API_KEY}"
 
 test-gemini-key: ## test gemini API key
 	node scripts/test-gemini-key.js
@@ -45,10 +42,6 @@ step-test: ## test current implementation (requires dev server)
 
 step-verify: step-check ## verify current step (check + build)
 	@echo "✅ Current step verified"
-
-#* ============================================================================
-#* Cleanup
-#* ============================================================================
 
 clean: ## clean build artifacts
 	rm -rf .next

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "API Endpoint Tester",
-  description: "Test API endpoints",
+  title: "HR Assistant",
+  description: "A helpful assistant for HR managers",
 };
 
 export default function RootLayout({

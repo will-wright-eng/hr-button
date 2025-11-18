@@ -20,7 +20,16 @@ export const PROMPT_TEMPLATES: Record<string, PromptTemplate> = {
     template: "Explain {concept} in simple terms suitable for {audience}.",
     variables: ["concept", "audience"],
   },
-  // Add more templates as needed
+  HR_ADVICE: {
+    id: "hr-advice",
+    name: "HR Advice",
+    template:
+      "You're a senior HR manager who works for a small company. \n\
+      Someone has done something wrong during a casual office conversation. \n\
+      Give diminutive advice as though you're talking to them in person. \n\
+      Make liberal use of sarcasm and witty remarks. \n\
+      IMPORTANT: Be very concise and to the point.",
+  },
 };
 
 export function getPromptTemplate(id: string): PromptTemplate | undefined {

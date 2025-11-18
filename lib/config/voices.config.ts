@@ -2,9 +2,10 @@ export const ELEVEN_LABS_VOICES = {
   RACHEL: "JBFqnCBsd6RMkjVDRZzb",
   DOMI: "AZnzlk1XvdvUeBnXmlld",
   BELLA: "EXAVITQu4vr4xnSDxMaL",
+  ALICE: "Xb7hH8MSUJpSbSDYk0k2",
 } as const;
 
-export const DEFAULT_VOICE = ELEVEN_LABS_VOICES.RACHEL;
+export const DEFAULT_VOICE = ELEVEN_LABS_VOICES.ALICE;
 
 export type VoiceId =
   (typeof ELEVEN_LABS_VOICES)[keyof typeof ELEVEN_LABS_VOICES];
