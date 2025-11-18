@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'API Endpoint Tester',
-  description: 'Test API endpoints',
+  title: "API Endpoint Tester",
+  description: "Test API endpoints",
 };
 
 export default function RootLayout({
@@ -16,4 +16,3 @@ export default function RootLayout({
     </html>
   );
 }
-

@@ -1,0 +1,64 @@
+# Pre-commit hooks configuration
+# Install: pip install pre-commit
+# Then run: pre-commit install
+
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: '\.md$'
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: ["--unsafe"] # Allow custom YAML tags
+      - id: check-json
+      - id: check-added-large-files
+        args: ["--maxkb=1000"]
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+      - id: detect-private-key
+
+  # TypeScript/JavaScript linting (using local npm script)
+  - repo: local
+    hooks:
+      - id: eslint
+        name: ESLint
+        entry: bash -c 'cd "$(git rev-parse --show-toplevel)" && export PATH="$PWD/node_modules/.bin:$PATH" && npm run lint -- --fix || true'
+        language: system
+        types: [file]
+        files: \.(js|jsx|ts|tsx)$
+        pass_filenames: false
+        require_serial: false
+
+  # Type checking with TypeScript
+  - repo: local
+    hooks:
+      - id: typescript-check
+        name: TypeScript Type Check
+        entry: bash -c 'cd "$(git rev-parse --show-toplevel)" && export PATH="$PWD/node_modules/.bin:$PATH" && npx tsc --noEmit'
+        language: system
+        types: [file]
+        files: \.(ts|tsx)$
+        pass_filenames: false
+
+  # Build check
+  - repo: local
+    hooks:
+      - id: nextjs-build-check
+        name: Next.js Build Check
+        entry: bash -c 'cd "$(git rev-parse --show-toplevel)" && export PATH="$PWD/node_modules/.bin:$PATH" && npm run build'
+        language: system
+        types: [file]
+        files: \.(ts|tsx|js|jsx|json)$
+        pass_filenames: false
+        stages: [pre-push] # Only run on push, not every commit
+
+  # Format code with Prettier (optional - uncomment if you want to use Prettier)
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        files: \.(js|jsx|ts|tsx|json|css|scss|md|yaml|yml)$

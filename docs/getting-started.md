@@ -36,18 +36,18 @@ mkdir -p app/api/test-endpoint
 Create `app/api/test-endpoint/route.ts`:
 
 ```typescript
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
     // Replace with your actual API call
-    const response = await fetch('https://api.example.com/endpoint', {
-      method: 'POST',
+    const response = await fetch("https://api.example.com/endpoint", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.API_KEY}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.API_KEY}`,
       },
       body: JSON.stringify(body),
     });
@@ -56,10 +56,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(data, { status: response.status });
   } catch (error) {
-    console.error('API route error:', error);
+    console.error("API route error:", error);
     return NextResponse.json(
-      { error: 'Failed to process request' },
-      { status: 500 }
+      { error: "Failed to process request" },
+      { status: 500 },
     );
   }
 }
@@ -178,7 +178,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser. Click the "
 Edit the `fetch()` URL in `app/api/test-endpoint/route.ts`:
 
 ```typescript
-const response = await fetch('https://your-api.com/your-endpoint', {
+const response = await fetch("https://your-api.com/your-endpoint", {
   // ...
 });
 ```
